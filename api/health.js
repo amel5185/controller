@@ -1,0 +1,1 @@
+const {json}=require("./_supabase");module.exports=(req,res)=>{if(req.method!=="GET")return json(res,405,{error:"Method not allowed"});let ok=!!(process.env.SUPABASE_URL&&(process.env.SUPABASE_SECRET_KEY||process.env.SUPABASE_SERVICE_ROLE_KEY));return json(res,ok?200:503,{ok})};

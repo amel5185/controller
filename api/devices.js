@@ -1,0 +1,5 @@
+const {db,json,fail,body,token,hash,equal,get}=require("./_supabase");
+module.exports=async(req,res)=>{try{
+if(req.method==="POST"){let b=await body(req),deviceId="dev_"+token(9),pairingCode=token(6).toUpperCase(),controlToken=token(32);await db("flashlight_commands",{method:"POST",body:JSON.stringify({device_id:deviceId,command:"OFF",device_token_hash:hash("pending-"+token()),control_token_hash:hash(controlToken),pairing_code_hash:hash(pairingCode),created_at:new Date().toISOString(),updated_at:new Date().toISOString()})});return json(res,201,{deviceId,pairingCode,controlToken,name:b.name||"Android device"})}
+if(req.method==="GET"){let id=String(req.query?.deviceId||""),t=String(req.headers["x-control-token"]||"");if(!id||!t)return json(res,400,{error:"deviceId dan x-control-token wajib diisi"});let r=await get(id);if(!r||!equal(r.control_token_hash,hash(t)))return json(res,401,{error:"ID atau control token salah"});return json(res,200,{deviceId:r.device_id,command:r.command,lastSeenAt:r.last_seen_at,online:!!r.last_seen_at&&Date.now()-new Date(r.last_seen_at).getTime()<45000})}
+return json(res,405,{error:"Method not allowed"})}catch(e){return fail(res,e)}};

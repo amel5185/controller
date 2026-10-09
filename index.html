@@ -1,0 +1,9 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#10131d"><title>Remote Flashlight Controller</title><link rel="stylesheet" href="/style.css"></head>
+<body><main class="shell">
+<header class="top"><div class="brand-mark">⚡</div><div><p class="eyebrow">REMOTE DEVICE CONTROL</p><h1>Flashlight <span>Controller</span></h1></div><span class="pill" id="apiStatus">Checking API…</span></header>
+<section class="hero"><div><p class="eyebrow">YOUR DEVICES</p><h2>Kontrol senter dari browser.</h2><p class="muted">Buat perangkat, masukkan kode pairing di APK, lalu kontrol senter Android.</p></div><button class="primary" id="createBtn">＋ Buat perangkat</button></section>
+<section class="notice" id="notice" role="status" hidden></section>
+<section class="pair-card" id="pairCard" hidden><div class="pair-head"><div><p class="eyebrow">PAIRING CODE</p><h3>Hubungkan APK Android</h3></div><button class="quiet" id="closePair">✕</button></div><p class="muted">Masukkan kode ini di APK. Kode hanya bisa dipakai sekali.</p><div class="pair-code" id="pairCode">------</div><button class="secondary" id="copyCode">Salin kode</button><p class="small muted">ID perangkat: <code id="deviceIdText"></code></p></section>
+<section class="section-head"><div><p class="eyebrow">DEVICE LIST</p><h2>Perangkat lu</h2></div><button class="quiet" id="refreshBtn">↻ Refresh</button></section>
+<section id="devices" class="devices"><div class="empty">Memuat perangkat…</div></section><footer>Remote Flashlight Controller · Vercel + Supabase</footer></main><script src="/script.js"></script></body></html>
